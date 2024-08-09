@@ -33,7 +33,7 @@ export default function AccountStatement() {
   const [data, setData] = useState([]);
   const [selected, setSelected] = useState([]);
   const navigate = useNavigate();
-  const API_BASE_URL = 'http://localhost:8080/api';
+  const API_BASE_URL = 'http://localhost:8080/v2/';
 
   const  loggedInCustomer = useSelector(state => state.customerloginuser.user);
 const userId = loggedInCustomer.userId;
@@ -41,7 +41,7 @@ const token = loggedInCustomer.token;
 
 const fetchAccountId = async (userId, token) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/user/${userId}/account`, {
+      const response = await fetch(`${API_BASE_URL}user/${userId}/account`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,7 +57,7 @@ const fetchAccountId = async (userId, token) => {
   
   const fetchTransactions = async (accountId, token) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/getTransactionByAccountId/${accountId}`, {
+      const response = await fetch(`${API_BASE_URL}account/${accountId}/transactions`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

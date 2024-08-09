@@ -66,7 +66,7 @@ function EditAccount() {
   useEffect(() => {
     const fetchAccount = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/account/${accountId}`, {
+        const response = await fetch(`http://localhost:8080/v2/account/${accountId}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -159,7 +159,7 @@ function EditAccount() {
     event.preventDefault();
     if (validateForm()) {
       try {
-        const response = await fetch(`http://localhost:8080/api/account/${accountId}`, {
+        const response = await fetch(`http://localhost:8080/v2/account/${accountId}`, {
           method: 'PUT',
           headers: {
             'Authorization': `Bearer ${token}`,

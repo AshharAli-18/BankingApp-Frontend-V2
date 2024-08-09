@@ -66,7 +66,7 @@ function FundsTransfer() {
   const userId = loggedInCustomer.userId;
   const email = loggedInCustomer.email;
   const token = loggedInCustomer.token;
-  const API_BASE_URL = 'http://localhost:8080/api';
+  const API_BASE_URL = 'http://localhost:8080/v2/';
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -103,7 +103,7 @@ function FundsTransfer() {
   const requestOtp = async () => {
     if (validateForm()) {
       try {
-        const response = await fetch(`${API_BASE_URL}/requestOtp`, {
+        const response = await fetch(`${API_BASE_URL}otp`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -130,7 +130,7 @@ function FundsTransfer() {
     console.log("perform transaction called!");
     console.log("Request body is:", requestBody);
     try {
-      const response = await fetch(`${API_BASE_URL}/transferMoney`, {
+      const response = await fetch(`${API_BASE_URL}transfer`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ function FundsTransfer() {
 
   const fetchAccountId = async (userId, token) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/user/${userId}/account`, {
+      const response = await fetch(`${API_BASE_URL}user/${userId}/account`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

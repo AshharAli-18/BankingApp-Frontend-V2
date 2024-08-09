@@ -1,17 +1,17 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080/";
+const BASE_URL = "http://localhost:8080/v2/";
 
 // login API
 export const customerloginApi = async ({ email, password }) =>
-    axios.post(`${BASE_URL}api/auth/loginCustomer`, { email, password });
+    axios.post(`${BASE_URL}auth/customer-login`, { email, password });
 
 export const adminloginApi = async ({ email, password }) =>
-  axios.post(`${BASE_URL}api/auth/loginAdmin`, { email, password });
+  axios.post(`${BASE_URL}auth/admin-login`, { email, password });
   
 // all accounts API
 export const getAccountsApi = (token) => {
-    return axios.get(`${BASE_URL}api/getAllAccounts`, {
+    return axios.get(`${BASE_URL}/accounts`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -20,7 +20,7 @@ export const getAccountsApi = (token) => {
 
 export const createAccountApi = (account ,token) => {
   const trimmedToken = token.trim();
-    return axios.post(`${BASE_URL}api/admin/createAccount`, account, {
+    return axios.post(`${BASE_URL}/account`, account, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -28,14 +28,14 @@ export const createAccountApi = (account ,token) => {
   };
 
 export const deleteAccountApi=(accountId, token)=>{
-  return axios.delete(`${BASE_URL}api/admin/deleteAccount/${accountId}`, {
+  return axios.delete(`${BASE_URL}account/${accountId}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
 };
 
 // load all transactions API
 export const getTransfersApi = (token) => {
-  return axios.get(`${BASE_URL}api/getAllTransfers`, {
+  return axios.get(`${BASE_URL}transfers`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -43,7 +43,7 @@ export const getTransfersApi = (token) => {
 };
 
 export const getTransactionsByTransferIdApi = (token, transferId) => {
-  return axios.get(`${BASE_URL}api/getTransactionByTransferId/${transferId}`, {
+  return axios.get(`${BASE_URL}transfer/${transferId}transactions`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
