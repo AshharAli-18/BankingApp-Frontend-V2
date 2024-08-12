@@ -29,6 +29,26 @@ function* handleCustomerLoginRequest(action) {
   }
 }
 
+// function* handleCustomerLoginRequest(action) {
+//   try {
+//     const { email, password } = action.payload;
+    
+//     // Make the API call
+//     const response = yield call(customerloginApi, { email, password });
+    
+//     // Extract data from the response
+//     const { accountId, role, userId, username } = response.data;
+    
+//     // Extract the token from the headers
+//     const token = response.headers['authorization']; // or 'Authorization' depending on the case
+
+//     // You can then store the token in the local storage or dispatch it with the success action
+//     yield put(customerloginSuccess({ accountId, role, userId, username, token }));
+//   } catch (error) {
+//     console.error("Login request failed:", error.message);
+//     yield put(customerloginFailure(error.message));
+//   }
+// }
   
 function* watchFunctionLoginRequest() {
     yield takeLatest(types.CUSTOMER_LOGIN_REQUEST, handleCustomerLoginRequest);

@@ -15,6 +15,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import useResponsive from '../hooks/useResponsive';
 import LoginImage from '../components/images/LoginImage.jpg';
+import CryptoJS from 'crypto-js';
 
 const useStyle = makeStyles({
   formStyle: {
@@ -132,7 +133,7 @@ function Registration() {
       console.log("Formdata is:", formData);
       try {
         const response = await axios.post(
-          'http://localhost:8080/v2/request',
+          'http://localhost:8080/v2/auth/request',
           formData
         );
   
@@ -156,6 +157,48 @@ function Registration() {
       }
     }
   };
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   if (validateForm()) {
+    
+  //     const encryptedPassword = CryptoJS.AES.encrypt(
+  //       formData.password,
+  //       '4F8A7D2B6E1C9F4A3D5E7C8B2A0D4F6E'
+  //     ).toString();
+  
+  //     const encryptedFormData = {
+  //       ...formData,
+  //       password: encryptedPassword,
+  //     };
+  
+  //     console.log("Formdata is:", encryptedFormData);
+  //     try {
+  //       const response = await axios.post(
+  //         'http://localhost:8080/v2/auth/request',
+  //         encryptedFormData
+  //       );
+  
+  //       console.log("response status is:", response.status);
+  //       if (response.status === 200) {
+  //         toast.success('Request sent successfully!');
+  //         setTimeout(() => {
+  //           navigate(-1);
+  //         }, 2000);
+  //       } else {
+  //         toast.error('Failed to send request');
+  //       }
+  //     } catch (error) {
+  //       if (error.response) {
+  //         const errorMessage = error.response.data.message || 'An error occurred';
+  //         toast.error(errorMessage);
+  //       } else {
+  //         toast.error('Network or server error');
+  //       }
+  //       console.error('Error:', error);
+  //     }
+  //   }
+  // };
 
   const handleloginclick = () => {
     navigate("/Login");

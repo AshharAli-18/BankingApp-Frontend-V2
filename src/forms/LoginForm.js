@@ -5,6 +5,7 @@ import { Link, Stack, IconButton, InputAdornment, TextField, MenuItem } from '@m
 import { LoadingButton } from '@mui/lab';
 import Iconify from '../components/iconify';
 import { customerloginRequest, adminloginRequest } from '../redux/actions';
+import CryptoJS from 'crypto-js';
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -45,6 +46,32 @@ export default function LoginForm() {
     return valid;
   };
 
+//    const encryptPassword = (password) => {
+//     const secretKey = "1234567890123456";
+//     return CryptoJS.AES.encrypt(password, CryptoJS.enc.Utf8.parse(secretKey), {
+//         mode: CryptoJS.mode.ECB,
+//         padding: CryptoJS.pad.Pkcs7
+//       }).toString();
+// }
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+    
+
+  //   if (validateForm()) {
+  //     try {
+  //       const encryptedPassword = encryptPassword(values.password);
+  //       if (values.role === 'user') {
+  //         await dispatch(customerloginRequest(values.email, encryptedPassword));
+  //       } else if (values.role === 'admin') {
+  //         await dispatch(adminloginRequest(values.email, values.password));
+  //       }
+  //     } catch (error) {
+  //       setError('An error occurred while logging in.');
+  //     } 
+  //   }
+  // };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     
@@ -61,7 +88,7 @@ export default function LoginForm() {
       } 
     }
   };
-
+  
   const loggedInCustomer = useSelector(state => state.customerloginuser.user);
   const loggedInAdmin = useSelector(state => state.adminloginuser.admin);
 

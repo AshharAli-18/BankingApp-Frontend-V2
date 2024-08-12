@@ -10,7 +10,7 @@
     import Logo from '../components/logos/logo.png'
     import LoginImage from '../components/images/LoginImage.jpg'
     import { useNavigate } from 'react-router-dom';
-
+    import CryptoJS from 'crypto-js';
 
     const StyledRoot = styled('div')(({ theme }) => ({
     [theme.breakpoints.up('md')]: {
